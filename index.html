@@ -1,0 +1,16 @@
+---
+layout: home.njk
+title: Blog
+description: Journal de bord d'une jeune padawan des Internets. Sur ce blog, je documente mon apprentissage du développement web.
+og_description: Journal de bord de mon apprentissage du développement web.
+thumbnail: images/home-thumbnail.jpg
+---
+
+{% for post in collections.posts reversed %}
+    <div class="home-blog-post">
+        <h2 class="home-post-title"><a class="underline-left" href="{{ post.url }}">{{ post.data.title }}</a></h2>
+        <p class="home-post-date">Posté le {{ post.data.literalDate }} par {{ post.data.author }}</p>
+        <p class="home-post-description">{{ post.data.description }}</p>
+        <a class="read-more-link" href="{{ post.url }}">Lire la suite <span>👉</span></a> 
+    </div>
+{% endfor %}

@@ -1,0 +1,14 @@
+---
+layout: base.njk
+templateClass: home
+---
+
+<header class="{{ templateClass }}">
+    <img class="home-page-animation" src="images/f5key.gif" alt="" />
+    <p class="blog-description">Journal de bord d'une jeune padawan des Internets</p>
+</header>
+<main class="{{ templateClass }}">
+    <div class="home-wrapper">
+        {{ content | safe }}  
+    </div>
+</main>

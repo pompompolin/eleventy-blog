@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/favicon.ico" />
+    <title>Créer un blog statique avec Eleventy | Pauline Gilg</title>
+    <meta name="description" content="Je suis partie à la découverte d&#39;Eleventy, un générateurs de site statique. Après quelques semaines de développement, je lance (enfin) mon blog. Dans ce premier article, je partage ce que j&#39;ai appris et vous montre comment créer un blog avec Eleventy.">
+    <meta property="og:url" content="/posts/creer-blog-eleventy/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Créer un blog statique avec Eleventy | Pauline Gilg" />
+    <meta property="og:description" content="Ou comment j&#39;ai (enfin) trouvé l&#39;outil de blog dont je rêvais." />
+    <meta property="og:image" content="start-a-blog.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/064186328e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Tarte au citron -->
+    <script type="text/javascript" src="/tarteaucitron/tarteaucitron.js"></script>
+
+        <script type="text/javascript">
+        tarteaucitron.init({
+    	  "privacyUrl": "https://paulinegilg.eu/cookies", /* Privacy policy url */
+
+    	  "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+    	  "cookieName": "tarteaucitron", /* Cookie name */
+    
+    	  "orientation": "bottom", /* Banner position (top - bottom) */
+    	  "showAlertSmall": false, /* Show the small banner on bottom right */
+    	  "cookieslist": true, /* Show the cookie list */
+
+    	  "adblocker": false, /* Show a Warning if an adblocker is detected */
+    	  "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+    	  "highPrivacy": true, /* Disable auto consent */
+    	  "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+
+    	  "removeCredit": false, /* Remove credit link */
+    	  "moreInfoLink": true, /* Show more info link */
+    	  "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+
+    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                          
+    	  "readmoreLink": "/cookiespolicy" /* Change the default readmore link */
+        });
+        </script>
+  </head>
+  <body>
+    <nav id="navbar">
+        <div class="nav-wrapper">
+            <span class="home-button"><a href="/">🏠</a></span>
+            <ul>
+                <li><a href="https://paulinegilg.eu" target="_blank">A propos</a></li>
+                <li><a href="mailto:gilgpauline@gmail.com" target="_blank">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+<header class="post" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%,rgba(255, 255, 255, 0.5) 100%), url('/images/start-a-blog.jpg');">
+    <h1 class="post-title">Créer un blog statique avec Eleventy</h1>
+    <p class="post-date">Posté le 1er juin 2020 par Pauline Gilg</p>
+</header>
+<main class="post">
+    <div class="post-wrapper">
+    <p>Ceux qui me connaissent le savent, j’adore les blogs. J’en ai eu près d’une dizaine qui n’ont jamais tenu plus de quelques mois. Je manquais certainement d’inspiration ou de motivation. Mais la plupart du temps, je me sentais bridée par les plateformes de blog que j’utilisais.</p>
+<p>Il y quelques semaines, je suis tombée par hasard sur un podcast nommé <a href="https://twitter.com/toolsday">Toolsday</a>. Dans un épisode, Una Kravets, spécialiste de développement front-end et de design, évoque la récente refonte de son blog. Elle raconte comment et pourquoi elle a choisi Eleventy, un outil émergeant du web.</p>
+<p>Son expérience a piqué ma curiosité. J’ai commencé à faire des recherches sur le sujet. Petit à petit, mon envie de créer un blog de zéro s'est réveillée.</p>
+<p>Je rêvais d’une technologie simple, élégante et personnalisable avec juste ce qu’il faut de challenge. Et vous savez quoi ? J’ai enfin trouvé la perle rare.</p>
+<p>Mettre au point ce blog n'a pas été simple au départ, comme c'est souvent le cas quand on découvre un nouvel outil. J'ai néanmoins pris du plaisir à le développer et j'ai beaucoup appris en cours de route. Pour mon premier article, j'aimerais partager cela avec vous. Qui sait ? Peut-être que cela vous donnera aussi envie de créer votre blog avec Eleventy.</p>
+<h2>Sommaire</h2>
+<ul>
+<li><a href="#1">Eleventy, c'est quoi ?</a></li>
+<li><a href="#2">Pourquoi choisir un générateur de site statique ?</a></li>
+<li><a href="#3">Installer Eleventy</a></li>
+<li><a href="#4">Créer un article</a></li>
+<li><a href="#5">Construire un template</a></li>
+<li><a href="#6">Créer une page d’accueil</a></li>
+<li><a href="#7">Appliquer du style</a></li>
+<li><a href="#8">Relier des templates entre eux</a></li>
+<li><a href="#9">Ajouter une image à la une aux articles</a></li>
+</ul>
+<h2><a name="1"></a>Eleventy, c’est quoi ?</h2>
+<p>Commençons par le commencement. <a href="https://www.11ty.dev/">Eleventy</a>, ou 11ty pour les intimes, est un générateur de site statique né en 2018 et créé avec JavaScript. Il existe beaucoup de générateurs de site statique. Parmi les plus connus, on peut citer Gatsby, Next.js et Jekyll.</p>
+<p>Leur fonctionnement est simple. Ils compilent des templates et des contenus pour générer des pages web reliées entre elles et donc, un site.</p>
+<p>De la même manière que les CMS, ils permettent donc de gérer séparément l’aspect graphique et les contenus. Cependant, ils ne font pas (ou presque pas) appel à des langages de scripts côté serveur et n’utilisent pas de base de données.</p>
+<p><img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" alt=""></p>
+<p>C’est à peu près comment mon moi du passé a réagi en faisant cette découverte.</p>
+<p>Les générateurs de site statique sont souvent utilisés pour créer des blogs. Ils sont le compromis idéal entre un site statique codé &quot;à la main&quot; et un CMS.</p>
+<h2><a name="2"></a>Pourquoi choisir un générateur de site statique ?</h2>
+<h3>Des temps de chargement plus rapides</h3>
+<p>Les sites statiques ne vont pas chercher de l’information de façon dynamique dans une base de données. Ils permettent donc de gagner de précieuses secondes.</p>
+<h3>Plus de sécurité</h3>
+<p>Les générateurs de site statique n'ont pas ou peu de lien avec des infrastructures côté serveur. Ils courent de ce fait moins de risques liés à la sécurité. Dans la plupart des cas, il n’y a pas non plus de tableau de bord avec des accès administrateurs à sécuriser.</p>
+<h3>La liberté</h3>
+<p>Il est vrai que les générateurs de site statique demandent plus de compétences techniques que les CMS. Mais c’est en quelque sorte le prix de la liberté. La personnalisation est sans limite avec les langages de programmation au cœur des générateurs.</p>
+<h2><a name="3"></a>Installer Eleventy</h2>
+<p>Avant de commencer, il est nécessaire de s’assurer d’avoir Node installé sur son ordinateur. Pour cela, ouvrez votre Terminal (Mac) ou votre Invite de commande (Windows). Tapez et exécutez la commande suivante :</p>
+<pre><code>node -- version
+</code></pre>
+<p>Eleventy a besoin de Node 8 ou plus pour fonctionner. Si vous n’avez pas la bonne version, rendez-vous sur le <a href="https://nodejs.org/fr/site">site de Node</a> pour la télécharger.</p>
+<p>Pour installer Eleventy, exécutez la commande suivante :</p>
+<pre><code>npm install -g @11ty/eleventy
+</code></pre>
+<h2><a name="4"></a>Créer un article</h2>
+<p>Créez un nouveau dossier pour votre projet, soit en utilisant l’interface utilisateur, soit en ligne de commande. Utilisez <code>cd</code> pour vous déplacer dans vos dossiers et <code>mkdir</code> pour un créer un à l'emplacement choisi.</p>
+<p>Dans votre nouveau dossier, créez votre premier article en langage Markdown : <code>blog-post.md</code>. Editez l’article en y ajoutant le code suivant :</p>
+<pre><code># Le titre de mon 1er post
+
+Hello World!
+</code></pre>
+<p>Maintenant, lancez Eleventy (en vous plaçant toujours dans le dossier de votre projet) en exécutant la commande suivante :</p>
+<pre><code>eleventy
+</code></pre>
+<p>Le terminal vous répondra quelque chose du genre :</p>
+<pre><code>Writing _site/blog-post/index.html from ./blog-post.md.
+Wrote 1 file in 2.45 seconds (v0.11.0)
+</code></pre>
+<p>Si vous retournez dans votre dossier de projet, vous verrez qu’Eleventy y a créé un nouveau dossier <code>_site</code>. A l’intérieur, vous trouverez un dossier <code>blog-post</code> contenant une page <code>index.html</code>. Ouvrez-là dans votre éditeur de code :</p>
+<pre><code>&lt;h1&gt;Le titre de mon premier post&lt;/h1&gt;
+
+&lt;p&gt;Hello World!&lt;/p&gt;
+</code></pre>
+<p>Eleventy a transformé du Markdown en HTML ! Génial non ?</p>
+<p>A ce stade, vous êtes peut-être en train de vous demander à quoi ça sert de transformer des fichiers comme cela. Est-ce qu’il ne serait pas plus simple d’écrire directement nos articles en HTML ?</p>
+<p>L'avantage du Markdown, c’est sa simplicité. On peut le lire ou l’écrire en l’état, sans avoir à déchiffrer le balisage. C'est l'idéal pour rédiger des articles de blog. Si vous découvrez ici le Markdown, je vous recommande <a href="https://www.markdownguide.org/basic-syntax/">ce guide</a> pour vous familiriser avec la syntaxe.</p>
+<p>Revenons à notre article qu’Eleventy a transformé en HTML. Nous avons bien des balises <code>&lt;h1&gt;</code> et <code>&lt;p&gt;</code> correspondant à notre titre et à notre paragraphe. Cependant, ce fichier HTML n’est pas valide en l’état.</p>
+<h2><a name="5"></a>Construire un template</h2>
+<p>Dans l’idéal, nous aimerions rendre nos articles valides sans avoir à y réécrire à chaque fois les balises HTML de base. C’est là que les templates entrent en jeu.</p>
+<p>Dans votre projet, créez un dossier <code>_includes</code>. A l’intérieur de celui-ci, créez un fichier <code>base.njk</code> en langage de templating <a href="https://mozilla.github.io/nunjucks/fr/templating.html">Nunjucks</a>. Dans ce fichier, nous allons construire le template de nos articles :</p>
+<p><em>Note : les variables en Nunjucks sont interprétées par les templates même dans des balises <code>&lt;code&gt;</code>. Il m'est donc impossible de fournir du code contenant des variables. Certaines étapes de ce tutoriel seront donc illustrées avec des images. Je suis preneuse d'astuces permettant de contourner cela. Merci !</em></p>
+<p><img src="../../images/eleventy-tuto-1.png" alt=""></p>
+<p>En Nunjucks, les éléments entre accolades représentent des variables. Ils permettent de récupérer des contenus provenant d'autres fichiers.</p>
+<p>Ensuite, au début de votre article, intégrez le code suivant :</p>
+<p><img src="../../images/eleventy-tuto-2.png" alt=""></p>
+<p>Ce bout de code indique à Eleventy que cet article doit être compilé avec le template <code>post.njk</code>.</p>
+<p>Vous pouvez supprimer votre titre <code># Le titre de mon 1er post</code> présent dans le corps du texte. Le titre de l’article est désormais stocké dans la variable <code>postTitle</code>. Il pourra ainsi être affiché dans le template entre les balises <code>&lt;h1&gt;</code>.</p>
+<p>Les éléments entre les <code>---</code> sont appelés YAML Front Matter. C'est un moyen de passer des informations au template au moment de la compilation.</p>
+<p>Sauvegardez et relancez la commande <code>eleventy</code> dans votre Terminal. Regardez le résultat sous <code>_site/blog-post/index.html</code> :</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Mon blog&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Le titre de mon 1er post&lt;/h1&gt;
+        &lt;p&gt;Hello World!&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Cette fois ça y est, nous avons une page HTML valide !</p>
+<h2><a name="6"></a>Créer une page d’accueil</h2>
+<p>Un blog avec un seul article, c’est un peu triste. Créez un deuxième article <code>blog-post2.md</code> :</p>
+<p><img src="../../images/eleventy-tuto-3.png" alt=""></p>
+<p>Pour avoir un blog digne de ce nom, il nous faudrait également une page d'accueil listant tous nos articles.</p>
+<p>Commençons par créer un dossier <code>posts</code> pour y ranger tous nos articles. Dans ce dossier <code>posts</code>, créez un fichier <code>posts.json</code>. Vous pourrez y écrire des informations qui s'appliqueront à tous les articles. Par exemple, nous pouvons demander à Eleventy de compiler les articles avec le template <code>base.njk</code>. Dans votre fichier <code>posts/posts.json</code>, intégrez le code suivant :</p>
+<pre><code>{
+
+    &quot;layout&quot;: &quot;base.njk&quot;
+
+}
+</code></pre>
+<p>Par conséquent, dans nos articles, nous n’avons plus besoin de préciser <code>layout: post.njk</code> dans le front matter. Nous avons toutefois toujours besoin de leur donner un titre :</p>
+<p><img src="../../images/eleventy-tuto-4.png" alt=""></p>
+<p>Pour lister tous nos articles sur la page d’accueil, il faut indiquer à Eleventy de les regrouper. Pour cela, nous avons besoin de ce que l’on appelle une &quot;collection&quot;.</p>
+<p>Dans votre fichier <code>posts/posts.json</code>, ajoutez un array <code>tags</code> pour stocker tous les articles :</p>
+<pre><code>{
+
+    &quot;layout&quot;: &quot;base.njk&quot;,
+
+    &quot;tags&quot;: [&quot;posts&quot;]
+
+}
+</code></pre>
+<p>Nous pouvons maintenant créer une page d’accueil. À la racine du projet, créez un fichier <code>index.html</code> comme suit :</p>
+<p><img src="../../images/eleventy-tuto-5.png" alt=""></p>
+<p>Retournez dans votre terminal et cette fois-ci, exécutez la commande suivante :</p>
+<pre><code>eleventy --serve
+</code></pre>
+<p>Vous venez de lancer un serveur local. Il se rafraîchit automatiquement quand vous sauvegardez. Votre blog est désormais visible à l’adresse <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p><img src="../../images/no-style-blog.jpg" alt=""></p>
+<h2><a name="7"></a>Appliquer du style</h2>
+<p>En l’état, notre blog n’a rien de très glamour. Pour le personnaliser, créez un fichier CSS <code>style.css</code> à la racine du projet. Admettons que nous souhaitons avoir une couleur de fond rouge. Dans le fichier <code>style.css</code>, écrivez le code suivant :</p>
+<pre><code>body {
+
+    background-color: red;
+
+}
+</code></pre>
+<p>Ajoutez votre feuille de style au template <code>base.njk</code> en ajoutant la ligne suivante dans le <code>&lt;head&gt;</code> :</p>
+<p><img src="../../images/eleventy-tuto-6.png" alt=""></p>
+<p>Sauvegardez et observez les changements dans le navigateur. Le style ne s’applique pas.</p>
+<p>Eleventy ne semble pas avoir copié <code>style.css</code> dans le dossier <code>_site</code> au moment de compiler. En fait, il est nécessaire de lui indiquer les extensions de fichiers et les dossiers qu’il doit copier.</p>
+<p>Créez un fichier <code>.eleventy.js</code> à la racine du projet et intégrez-y le code suivant :</p>
+<pre><code>module.exports = function(eleventyConfig) {
+    eleventyConfig.setTemplateFormats([
+        &quot;njk&quot;,
+        &quot;md&quot;,
+        &quot;html&quot;,
+        &quot;css&quot;
+    ]);
+    eleventyConfig.addPassthroughCopy('images');
+};
+</code></pre>
+<p>Nous lui demandons de copier tous les fichiers Nunjucks, Markdown, HTML et CSS. Il copiera également le dossier images dans lequel nous rangerons nos visuels. On appelle cela le &quot;passthrough&quot;.</p>
+<p><em>Note : il est parfois nécessaire de relancer Eleventy après avoir modifié le passthrough.</em></p>
+<p>Dans le navigateur, cette fois le style s’applique bien, notre background est rouge.</p>
+<p><img src="../../images/with-style-blog.jpg" alt=""></p>
+<h2><a name="8"></a>Relier des templates entre eux</h2>
+<p>Sur mon blog, j’utilise 3 templates :</p>
+<ul>
+<li><code>home.njk</code> pour la page d’accueil</li>
+<li><code>post.njk</code> pour les articles</li>
+<li><code>base.njk</code> pour structurer l’ensemble du blog</li>
+</ul>
+<p>Cela me permet d'avoir un affichage différent sur la page d’accueil et sur les articles. Consultez la documentation d'Eleventy pour en savoir plus sur le <a href="https://www.11ty.dev/docs/layout-chaining/">layout chaining</a>.</p>
+<p>Essayons de faire de même. Commencez par créer 2 nouveaux templates, <code>home.njk</code> et <code>post.njk</code> dans le dossier <code>_includes</code>. Ajoutez-y le code suivant :</p>
+<p><img src="../../images/eleventy-tuto-7.png" alt=""></p>
+<p>Dans le front matter, nous indiquons à Eleventy que ces templates se basent sur le template <code>base.njk</code>.</p>
+<p>Retournez maintenant dans le fichier <code>index.html</code> à la racine du projet. Il s’agit du fichier qui contient notre page d’accueil. Changez le layout en <code>home.njk</code>.</p>
+<p>De la même manière, changez le layout des articles en <code>post.njk</code> en vous rendant dans <code>posts/posts.json</code>.</p>
+<p>Le template <code>base.njk</code> ne change pas.</p>
+<p>Normalement votre blog devrait toujours fonctionner comme avant. Vous avez cependant dissocié l'affichage de la page d'accueil de celui des articles. Vous pourrez maintenant les personnaliser séparément.</p>
+<h2><a name="9"></a>Ajouter une image à la une aux articles</h2>
+<p>Pour ajouter une image à la une (ou thumbnail) à vos articles, créez un dossier <code>images</code> à la racine de votre projet. Si vous avez suivi ce tutoriel depuis le début, vous devriez avoir configuré un passthrough pour ce dossier. Si ce n’est pas le cas, je vous invite à revenir à la <a href="#7">section sur le style</a>.</p>
+<p>Ensuite, dans un de vos articles, ajoutez votre image dans le front matter :</p>
+<p><img src="../../images/eleventy-tuto-8.png" alt=""></p>
+<p>Enfin, ajoutez votre image dans le template <code>post.njk</code> :</p>
+<p><img src="../../images/eleventy-tuto-9.png" alt=""></p>
+<p>Le résultat :</p>
+<p><img src="../../images/blog-post-thumbnail.jpg" alt=""></p>
+<p>Vous pouvez désormais avoir une image à la une dans tous vos articles, simplement en renseignant son nom dans le front matter. Pratique non ?</p>
+<p>Et voilà ! Vous avez créé un blog !</p>
+<blockquote>
+<p>Pour pousser un peu plus loin, consultez la <a href="https://www.11ty.dev/docs/">documentation d'Eleventy</a>. Et si vous avez des questions ou des suggestions au sujet de cet article, n'hésitez pas à me contacter !</p>
+</blockquote>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://www.11ty.dev/docs/">https://www.11ty.dev/docs/</a></li>
+<li><a href="https://www.filamentgroup.com/lab/build-a-blog/">https://www.filamentgroup.com/lab/build-a-blog/</a></li>
+<li><a href="https://snipcart.com/blog/choose-best-static-site-generator">https://snipcart.com/blog/choose-best-static-site-generator</a></li>
+</ul>
+  
+
+    <!-- See more posts button -->   
+    <p class="see-more-posts"><a href="/">Voir plus de posts <span>👀</span></a></p>
+
+    <!-- Disqus comments - Do NOT modify below this line -->
+    <div id="disqus_thread"></div>
+    <script>
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://pauline-gilg-blog.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+    </div>
+</main>
+    <footer>
+      <div class="social-media">
+        <a href="https://www.linkedin.com/in/pauline-gilg/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/pompompolin" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://codepen.io/pompompolin" target="_blank"><i class="fab fa-codepen"></i></a>
+        <a href="https://github.com/pompompolin" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="copyrights">
+        <p>© Pauline Gilg 2020. Développé avec Eleventy. Voir le <a href="https://github.com/pompompolin/eleventy-blog" target="_blank">code</a>.</p>
+      </div>
+    </footer>
+    <!-- My JavaScript -->
+    <script src="/main.js"></script>
+    <!-- Tarte au citron & Google Analytics -->
+    <script type="text/javascript">
+      tarteaucitron.user.gtagUa = 'UA-167708559-1';
+      tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
+      (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+    </script>
+  </body>
+</html>

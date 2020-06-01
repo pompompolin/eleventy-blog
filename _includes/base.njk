@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ rootDir }}/images/favicon.ico" />
+    <title>{{ title }} | Pauline Gilg</title>
+    <meta name="description" content="{{ description }}">
+    <meta property="og:url" content="{{ page.url }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ title }} | Pauline Gilg" />
+    <meta property="og:description" content="{{ og_description }}" />
+    <meta property="og:image" content="{{ rootDir }}{{ thumbnail }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/064186328e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ rootDir }}/style.css" />
+
+    <!-- Tarte au citron -->
+    <script type="text/javascript" src="{{ rootDir }}/tarteaucitron/tarteaucitron.js"></script>
+
+        <script type="text/javascript">
+        tarteaucitron.init({
+    	  "privacyUrl": "https://paulinegilg.eu/cookies", /* Privacy policy url */
+
+    	  "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+    	  "cookieName": "tarteaucitron", /* Cookie name */
+    
+    	  "orientation": "bottom", /* Banner position (top - bottom) */
+    	  "showAlertSmall": false, /* Show the small banner on bottom right */
+    	  "cookieslist": true, /* Show the cookie list */
+
+    	  "adblocker": false, /* Show a Warning if an adblocker is detected */
+    	  "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+    	  "highPrivacy": true, /* Disable auto consent */
+    	  "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+
+    	  "removeCredit": false, /* Remove credit link */
+    	  "moreInfoLink": true, /* Show more info link */
+    	  "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+
+    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                          
+    	  "readmoreLink": "/cookiespolicy" /* Change the default readmore link */
+        });
+        </script>
+  </head>
+  <body>
+    <nav id="navbar">
+        <div class="nav-wrapper">
+            <span class="home-button"><a href="{{ '/' | url }}">🏠</a></span>
+            <ul>
+                <li><a href="https://paulinegilg.eu" target="_blank">A propos</a></li>
+                <li><a href="mailto:gilgpauline@gmail.com" target="_blank">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    {{ content | safe }}
+    <footer>
+      <div class="social-media">
+        <a href="https://www.linkedin.com/in/pauline-gilg/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/pompompolin" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://codepen.io/pompompolin" target="_blank"><i class="fab fa-codepen"></i></a>
+        <a href="https://github.com/pompompolin" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="copyrights">
+        <p>© Pauline Gilg 2020. Développé avec Eleventy. Voir le <a href="https://github.com/pompompolin/eleventy-blog" target="_blank">code</a>.</p>
+      </div>
+    </footer>
+    <!-- My JavaScript -->
+    <script src="{{ rootDir }}/main.js"></script>
+    <!-- Tarte au citron & Google Analytics -->
+    <script type="text/javascript">
+      tarteaucitron.user.gtagUa = 'UA-167708559-1';
+      tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
+      (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+    </script>
+  </body>
+</html>
