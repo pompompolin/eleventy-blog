@@ -9,3 +9,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy('tarteaucitron');
     eleventyConfig.addPassthroughCopy('main.js');
   };
+
+module.exports = {
+  pathPrefix: "/blog/"
+};

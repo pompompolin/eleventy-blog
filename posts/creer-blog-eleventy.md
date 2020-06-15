@@ -1,6 +1,6 @@
 ---
 title: Créer un blog statique avec Eleventy
-description: Je suis partie à la découverte d'Eleventy, un générateurs de site statique. Après quelques semaines de développement, je lance (enfin) mon blog. Dans ce premier article, je partage ce que j'ai appris et vous montre comment créer un blog avec Eleventy.
+description: Je suis partie à la découverte d'Eleventy, un générateur de site statique. Après quelques semaines de développement, je lance (enfin) mon blog. Dans ce premier article, je partage ce que j'ai appris et vous montre comment créer un blog avec Eleventy.
 thumbnail: start-a-blog.jpg
 literalDate: 1er juin 2020
 og_description: Ou comment j'ai (enfin) trouvé l'outil de blog dont je rêvais.
@@ -269,6 +269,6 @@ Et voilà ! Vous avez créé un blog !
 
 ### Sources
 
-- [https://www.11ty.dev/docs/](https://www.11ty.dev/docs/)
-- [https://www.filamentgroup.com/lab/build-a-blog/](https://www.filamentgroup.com/lab/build-a-blog/)
-- [https://snipcart.com/blog/choose-best-static-site-generator](https://snipcart.com/blog/choose-best-static-site-generator)
+- [Eleventy - Documentation](https://www.11ty.dev/docs/)
+- [Filament Group - Build your own Blog from Scratch using Eleventy](https://www.filamentgroup.com/lab/build-a-blog/)
+- [Snipcart.com - Pick the Best Static Site Generator for your 2020 Projects](https://snipcart.com/blog/choose-best-static-site-generator)
