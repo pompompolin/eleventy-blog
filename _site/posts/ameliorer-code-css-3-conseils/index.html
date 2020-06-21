@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/blog/images/favicon.ico" />
+    <title>3 conseils pour améliorer son code CSS | Pauline Gilg</title>
+    <meta name="description" content="Écrire du code CSS n’est pas difficile en soi. Mais écrire du CSS pour des projets volumineux, complexes et durables dans le temps est une autre paire de manches. J’ai entrepris quelques recherches sur le sujet pour améliorer mon CSS et produire un code propre.">
+    <meta property="og:url" content="https://paulinegilg.eu/blog/posts/ameliorer-code-css-3-conseils/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="3 conseils pour améliorer son code CSS | Pauline Gilg" />
+    <meta property="og:description" content="Bien nommer ses classes 101" />
+    <meta property="og:image" content="https://paulinegilg.eu/blog/images/ameliorer-code-css.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/064186328e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://paulinegilg.eu/blog/style.css" />
+
+    <!-- Tarte au citron -->
+    <script type="text/javascript" src="https://paulinegilg.eu/blog/tarteaucitron/tarteaucitron.js"></script>
+
+        <script type="text/javascript">
+        tarteaucitron.init({
+    	  "privacyUrl": "https://paulinegilg.eu/cookies", /* Privacy policy url */
+
+    	  "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+    	  "cookieName": "tarteaucitron", /* Cookie name */
+    
+    	  "orientation": "bottom", /* Banner position (top - bottom) */
+    	  "showAlertSmall": false, /* Show the small banner on bottom right */
+    	  "cookieslist": true, /* Show the cookie list */
+
+    	  "adblocker": false, /* Show a Warning if an adblocker is detected */
+    	  "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+    	  "highPrivacy": true, /* Disable auto consent */
+    	  "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+
+    	  "removeCredit": false, /* Remove credit link */
+    	  "moreInfoLink": true, /* Show more info link */
+    	  "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+
+    	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                          
+    	  "readmoreLink": "/cookiespolicy" /* Change the default readmore link */
+        });
+        </script>
+  </head>
+  <body>
+    <nav id="navbar">
+        <div class="nav-wrapper">
+            <span class="home-button"><a href="/blog/">🏠</a></span>
+            <ul>
+                <li><a href="https://paulinegilg.eu" target="_blank">A propos</a></li>
+                <li><a href="mailto:gilgpauline@gmail.com" target="_blank">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+<header class="post" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%,rgba(255, 255, 255, 0.5) 100%), url('/blog/images/ameliorer-code-css.jpg');">
+    <h1 class="post-title">3 conseils pour améliorer son code CSS</h1>
+    <p class="post-date">Posté le 21 juin 2020 par Pauline Gilg</p>
+</header>
+<main class="post">
+    <div class="post-wrapper">
+    <p>Quand j’ai débuté mon apprentissage du code en 2015, je suis tout de suite tombée sous le charme du langage CSS. C'était incroyable de pouvoir personnaliser des éléments aussi précisément et de voir le résultat en direct dans mon navigateur. C’était simple, ludique et intuitif.</p>
+<p>À cette époque, je ne connaissais rien du &quot;box-model&quot;, du positionnement, des flexbox, grid et autres propriétés plus poussées de CSS. Je travaillais un peu au petit bonheur la chance. J’ai rapidement compris que CSS était en réalité plus complexe qu’il n’y paraît. Connaître toutes les propriétés par cœur ne suffit pas. Si l’on souhaite produire un code propre et qui a du sens, il est fondamental d'utiliser des méthodes pour l'organiser.</p>
+<p>Ce sentiment s'est renforcé dernièrement, alors que je travaillais avec CSS sur des projets variés. J’ai refondu mon portfolio avec React et <a href="https://paulinegilg.eu/blog/posts/creer-blog-eleventy/">lancé ce blog</a>. Sur le plan professionnel également, j’ai été amenée à créer plusieurs sites dans le cadre de la crise sanitaire. Ces projets m’ont fait prendre conscience de mes limites en CSS.</p>
+<p>Écrire du code CSS n’est pas difficile en soi. Mais écrire du CSS pour des projets volumineux, complexes et durables dans le temps est une autre paire de manches. Maintenir du code CSS est en effet une chose particulièrement ardue.</p>
+<p>J’ai entrepris quelques recherches sur le sujet qui se sont avérées très enrichissantes. J’en partage aujourd’hui le fruit avec vous dans cet article. Voici donc 3 conseils pour vous aider à améliorer votre code CSS !</p>
+<h2>DRY = Don’t Repeat Yourself</h2>
+<p>Le DRY pour &quot;Don’t Repeat Yourself&quot;, est un principe général du développement web qui s’applique à tous les autres langages. Comme cet acronyme le suggère, un code propre est un code qui minimise les répétitions.</p>
+<p>Voici un exemple basé sur le framework CSS Bulma. Ici, nous avons créé une série de boutons ayant des caractéristiques communes (taille, coins arrondis, espacement, police…) mais des couleurs différentes. Pour des raisons de lisibilité, le bouton Warning a une couleur de police différente.</p>
+<p class="codepen" data-height="282" data-theme-id="dark" data-default-tab="css,result" data-user="pompompolin" data-slug-hash="zYrBoyL" style="height: 282px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS DRY button example"><span>See the Pen <a href="https://codepen.io/pompompolin/pen/zYrBoyL">CSS DRY button example</a> by Pauline (<a href="https://codepen.io/pompompolin">@pompompolin</a>)on <a href="https://codepen.io">CodePen</a>.</span></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script> 
+<p>Pour éviter les répétitions, nous avons créé une classe <code>.button</code> pour tous les boutons où nous définissons leurs propriétés communes. Ensuite, nous avons créé des classes propres à chaque type de bouton pour y définir leur couleur.</p>
+<p>Pour le bouton Warning qui a une couleur de police différente, pas de problème, on peut très bien réécrire cette information &quot;par dessus&quot; <code>.button</code>, dans la classe <code>.warning</code>. Grâce à cette notation, on comprend aisément le rôle de chaque classe et à quels éléments en particulier elle fait référence.</p>
+<p>Ce principe permet d’éviter les répétitions et réduit donc le nombre de ligne. On améliore ainsi la lisibilité du code mais aussi sa performance.</p>
+<h2>Adopter une méthodologie de nommage</h2>
+<p>Bien nommer ses sélecteurs est une part importante de CSS.</p>
+<p>Il convient tout d’abord d’éviter l’utilisation de classes portant le nom d’éléments HTML ou ayant une valeur sémantique telles que <code>.p</code>, <code>.header</code> ou <code>.footer</code>. Ces classes ne permettent pas de comprendre à quoi elles font référence. Elles sont trop générales.</p>
+<pre><code>/* A éviter */
+.p {
+    // propriétés
+}
+
+.header {
+    // propriétés
+}
+</code></pre>
+<p>On préférera des classes avec des noms auto-descriptifs et lisibles. L’objectif est de pouvoir comprendre à quels éléments ils font référence au premier coup d’œil.</p>
+<pre><code>/* Bonne pratique */
+.post-title {
+    // propriétés du titre de mon article
+}
+
+.post-paragraph {
+    // propriétés du texte de mon article
+}
+</code></pre>
+<p>Les noms de classes doivent être faciles à comprendre et pas trop spécifiques. Ils doivent avoir un sens et faire référence à une fonction structurelle. À travers le nommage, on doit pouvoir facilement discerner la structure HTML sous-jacente, le rôle des classes CSS et la relation entre les deux. De cette façon, ces classes pourront être facilement réutilisables ailleurs sur le site, et pas seulement sur une page en particulier.</p>
+<p>À noter qu’on écrit de préférence les classes en minuscules avec des tirets. Mieux vaut éviter le camelCase. Cette convention est basée sur l’écriture des propriétés elles-mêmes.</p>
+<pre><code>.postTitle {
+    // A éviter
+}
+.post-title {
+    // Bonne pratique
+}
+</code></pre>
+<p>Revenons un instant sur notre exemple des boutons colorés.</p>
+<p class="codepen" data-height="282" data-theme-id="dark" data-default-tab="css,result" data-user="pompompolin" data-slug-hash="zYrBoyL" style="height: 282px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS DRY button example"><span>See the Pen <a href="https://codepen.io/pompompolin/pen/zYrBoyL">CSS DRY button example</a> by Pauline (<a href="https://codepen.io/pompompolin">@pompompolin</a>)on <a href="https://codepen.io">CodePen</a>.</span></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>On constate que le nommage des classes propres à chaque bouton n’est pas basé sur leur couleur. Nous aurions pu écrire des classes telles que <code>.red</code> ou <code>.blue</code>. À la place, le nommage est basé sur le fonctionnement des boutons, celui-ci étant indépendant de la couleur. Ainsi, si un jour nous souhaitons faire passer les boutons <code>.warning</code> en orange, nous aurons juste à changer leur couleur dans le code CSS. Imaginez si nous avions mis des <code>class=&quot;yellow&quot;</code> dans notre HTML, et que désormais les boutons étaient orange ? Ce n'est peut-être pas très grave, mais dans le cadre d'un projet plus important et collaboratif, cela aurait pu entraîner des confusions.</p>
+<h2>Appliquer la &quot;modularisation&quot; au CSS</h2>
+<p>Le CSS modulaire (Modular CSS) est un ensemble de principes permettant d’écrire du code performant et maintenable dans le temps.</p>
+<p>Au lieu de coder son CSS avec une approche &quot;top-down&quot; à l'échelle de la page, le CSS modulaire propose de procéder à l’inverse. Il s’agit de décomposer une page web en éléments, eux-mêmes composés d'éléments, et ainsi de suite. Cela permet d’identifier les briques de code composant la page et plus généralement, le site. Cette approche est souvent comparée à la construction en Lego.</p>
+<p>Par exemple, un extrait d’article de blog sur la page d’accueil d’un site web sera composé d’un titre, d’une date, d’un auteur, de tags, d’une description, etc. Ces éléments pourront éventuellement être réutilisés à d’autres endroits sur le site. Ils auront le même comportement et une mise en forme similaire.</p>
+<p>Cette logique en composants a de nombreux bénéfices. Personnellement, je trouve que cela pousse à réfléchir à son code, à questionner la raison d’être de chaque classe. Cela permet également de &quot;découpler&quot; le code, c’est-à-dire à rendre indépendants tous les composants. Ainsi, on limite les risques d’avoir des sélecteurs qui se marchent sur les pieds, avec un code CSS qui fonctionne aléatoirement voire pas du tout.</p>
+<p>Voici un exemple de modularisation d’un composant. Il s’agit d’un extrait d’article que j’ai pu trouver sur le site <a href="https://dev.to/">Dev.to</a>.</p>
+<p><img src="../../images/dev-blog-post-example.png" alt=""></p>
+<p>On peut voir que l’élément <code>.crayons-story</code> représentant l’article est composé d’éléments enfants, eux-mêmes composés d’éléments enfants. Le nommage des classes permet d’identifier facilement la fonction de l’élément et ses liens avec les autres.</p>
+<h2>Aller plus loin avec les conventions de nommage</h2>
+<p>Pour aller encore plus loin, on peut utiliser une convention de nommage CSS. Il en existe de nombreuses, parmi elles, les méthodologies OOCSS, BEM, et SMACSS. Je ne vais pas rentrer dans les détails ici, mais je vais néanmoins vous présenter rapidement l'OOCSS que je trouve très intéressante.</p>
+<p>L’OOCSS pour Object Oriented CSS, est une méthodologie créée par Nicole Sullivan en 2009 dans le cadre de son travail chez Yahoo. Le concept clé de l’OOCSS est de considérer les éléments comme des briques (ou objets) réutilisables dont l’apparence n’est pas déterminée par le contexte. En d’autres termes, ces objets sont des motifs visuels autonomes pouvant se résumer à un bout de code HTML, CSS et éventuellement JavaScript. Ces objets peuvent ainsi, et doivent, avoir la même apparence peu importe où ils sont placés sur le site.</p>
+<p>L’OOCSS préconise également de ne pas utiliser d’IDs. D’une part parce qu’ils sont plus forts que les classes en termes de spécificité, et qu’ils risquent donc de créer des interférences dans le code et d'autre part parce qu’étant uniques, ils vont à l’encontre du principe fondateur de l’OOCSS, à savoir leur caractère réutilisable.</p>
+<p>Mieux vaut donc utiliser des classes pour nommer ses objets. De cette façon, il est moins contraignant de faire évoluer son code HTML. On peut par exemple passer d’un <code>h1</code> à un <code>h3</code> sans avoir à changer l’organisation des balises.</p>
+<blockquote>
+<p>Le chemin est long pour devenir pleinement maître de CSS ! J'espère que ces conseils vous seront utiles autant qu'ils le seront désormais pour moi. N'hésitez pas à me contacter via les commentaires ou Twitter si vous souhaitez en discuter.</p>
+</blockquote>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://spaceninja.com/2018/09/18/what-is-modular-css/">Scott Vandehey : What is modular CSS?</a></li>
+<li><a href="https://www.24joursdeweb.fr/2018/css-objet-et-css-fonctionnel/">Thibault Mahé sur 24 jours de web (2018) : CSS objet et CSS fonctionnel</a></li>
+<li><a href="https://css-tricks.com/css-modules-part-1-need/">Robin Rendle sur CSS-tricks : What are CSS Modules and why do we need them?</a></li>
+<li><a href="https://www.freecodecamp.org/news/7-important-tips-for-writing-better-css/">Cem Eygi sur freeCodeCamp : 7 Important Tips for Writing Better CSS</a></li>
+<li><a href="https://www.freecodecamp.org/news/leveling-up-css-44b5045a2667/">Jonathan Z White sur freeCodeCamp : Leveling up in CSS</a></li>
+<li><a href="https://dev.to/ziizium/css-naming-conventions-5gd6">Habdul Hazeez sur Dev.to : CSS Naming conventions</a></li>
+</ul>
+  
+
+    <!-- See more posts button -->   
+    <p class="see-more-posts"><a href="/blog/">Voir plus de posts <span>👀</span></a></p>
+
+    <!-- Disqus comments - Do NOT modify below this line -->
+    <div id="disqus_thread"></div>
+    <script>
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://pauline-gilg-blog.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+    </div>
+</main>
+    <footer>
+      <div class="social-media">
+        <a href="https://www.linkedin.com/in/pauline-gilg/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/pompompolin" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://codepen.io/pompompolin" target="_blank"><i class="fab fa-codepen"></i></a>
+        <a href="https://github.com/pompompolin" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="copyrights">
+        <p>© Pauline Gilg 2020. Développé avec Eleventy. Voir le <a href="https://github.com/pompompolin/eleventy-blog" target="_blank">code</a>.</p>
+      </div>
+    </footer>
+    <!-- My JavaScript -->
+    <script src="https://paulinegilg.eu/blog/main.js"></script>
+    <!-- Tarte au citron & Google Analytics -->
+    <script type="text/javascript">
+      tarteaucitron.user.gtagUa = 'UA-167708559-1';
+      tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
+      (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+    </script>
+  </body>
+</html>
