@@ -27,9 +27,9 @@ Voici un exemple basé sur le framework CSS Bulma. Ici, nous avons créé une s�
 
 Pour éviter les répétitions, nous avons créé une classe ``.button`` pour tous les boutons où nous définissons leurs propriétés communes. Ensuite, nous avons créé des classes propres à chaque type de bouton pour y définir leur couleur.
 
-Pour le bouton Warning qui a une couleur de police différente, pas de problème, on peut très bien réécrire cette information "par dessus" ``.button``, dans la classe ``.warning``. Grâce à cette notation, on comprend aisément le rôle de chaque classe et à quels éléments en particulier elle fait référence.
+Pour le bouton Warning qui a une couleur de police différente, pas de problème, on peut très bien réécrire cette information "par dessus" ``.button``, dans la classe ``.is-warning``. Grâce à cette notation, on comprend aisément le rôle de chaque classe et à quels éléments en particulier elle fait référence.
 
-Ce principe permet d’éviter les répétitions et réduit donc le nombre de ligne. On améliore ainsi la lisibilité du code mais aussi sa performance.
+Ce principe permet d’éviter les répétitions et réduit donc le nombre de lignes. On améliore ainsi la lisibilité du code mais aussi sa performance.
 
 ## Adopter une méthodologie de nommage
 
@@ -73,7 +73,7 @@ Revenons un instant sur notre exemple des boutons colorés.
 <p class="codepen" data-height="282" data-theme-id="dark" data-default-tab="css,result" data-user="pompompolin" data-slug-hash="zYrBoyL" style="height: 282px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS DRY button example"><span>See the Pen <a href="https://codepen.io/pompompolin/pen/zYrBoyL">CSS DRY button example</a> by Pauline (<a href="https://codepen.io/pompompolin">@pompompolin</a>)on <a href="https://codepen.io">CodePen</a>.</span></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-On constate que le nommage des classes propres à chaque bouton n’est pas basé sur leur couleur. Nous aurions pu écrire des classes telles que ``.red`` ou ``.blue``. À la place, le nommage est basé sur le fonctionnement des boutons, celui-ci étant indépendant de la couleur. Ainsi, si un jour nous souhaitons faire passer les boutons ``.warning`` en orange, nous aurons juste à changer leur couleur dans le code CSS. Imaginez si nous avions mis des ``class="yellow"`` dans notre HTML, et que désormais les boutons étaient orange ? Ce n'est peut-être pas très grave, mais dans le cadre d'un projet plus important et collaboratif, cela aurait pu entraîner des confusions.
+On constate que le nommage des classes propres à chaque bouton n’est pas basé sur leur couleur. Nous aurions pu écrire des classes telles que ``.red`` ou ``.blue``. À la place, le nommage est basé sur le fonctionnement des boutons, celui-ci étant indépendant de la couleur. Ainsi, si un jour nous souhaitons faire passer les boutons ``.is-warning`` en orange, nous aurons juste à changer leur couleur dans le code CSS. Imaginez si nous avions mis des ``class="yellow"`` dans notre HTML, et que désormais les boutons étaient orange ? Ce n'est peut-être pas très grave, mais dans le cadre d'un projet plus important et collaboratif, cela aurait pu entraîner des confusions.
 
 ## Appliquer la "modularisation" au CSS
 
@@ -85,7 +85,7 @@ Par exemple, un extrait d’article de blog sur la page d’accueil d’un site 
 
 Cette logique en composants a de nombreux bénéfices. Personnellement, je trouve que cela pousse à réfléchir à son code, à questionner la raison d’être de chaque classe. Cela permet également de "découpler" le code, c’est-à-dire à rendre indépendants tous les composants. Ainsi, on limite les risques d’avoir des sélecteurs qui se marchent sur les pieds, avec un code CSS qui fonctionne aléatoirement voire pas du tout. 
 
-Voici un exemple de modularisation d’un composant. Il s’agit d’un extrait d’article que j’ai pu trouver sur le site [Dev.to](https://dev.to/).
+Voici un exemple de modularisation d’un composant. Il s’agit d’un extrait d’article que j’ai trouvé sur le site [Dev.to](https://dev.to/).
 
 ![](../../images/dev-blog-post-example.png)
 
@@ -93,7 +93,7 @@ On peut voir que l’élément ``.crayons-story`` représentant l’article est 
 
 ## Aller plus loin avec les conventions de nommage
 
-Pour aller encore plus loin, on peut utiliser une convention de nommage CSS. Il en existe de nombreuses, parmi elles, les méthodologies OOCSS, BEM, et SMACSS. Je ne vais pas rentrer dans les détails ici, mais je vais néanmoins vous présenter rapidement l'OOCSS que je trouve très intéressante.
+Pour aller encore plus loin, on peut utiliser une convention de nommage CSS. Il en existe plusieurs, parmi elles, les méthodologies OOCSS, BEM, et SMACSS. Je ne vais pas rentrer dans les détails ici, mais je vais néanmoins présenter rapidement l'OOCSS que je trouve très intéressante.
 
 L’OOCSS pour Object Oriented CSS, est une méthodologie créée par Nicole Sullivan en 2009 dans le cadre de son travail chez Yahoo. Le concept clé de l’OOCSS est de considérer les éléments comme des briques (ou objets) réutilisables dont l’apparence n’est pas déterminée par le contexte. En d’autres termes, ces objets sont des motifs visuels autonomes pouvant se résumer à un bout de code HTML, CSS et éventuellement JavaScript. Ces objets peuvent ainsi, et doivent, avoir la même apparence peu importe où ils sont placés sur le site.
 
